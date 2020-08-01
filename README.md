@@ -7,7 +7,7 @@ Simple REST API created to enable editing Post model
 ## Tech stack
 - backend => express.js
 - API authorization => JWT
-- database => MSSQL
+- database => PostgreSQL
 
 ## Creating DB
 - ```bash CREATE USER psqlUser WITH PASSWORD 'passowrd'; ```
