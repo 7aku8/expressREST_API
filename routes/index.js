@@ -1,11 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const db = require('../config/db');
+const Post = require('../models/Post');
 
 // add new post
 router.post('/', (req, res) => {
-  res.json({
-    msg: "add new post"
-  });
+  Post.findAll()
+    .then(posts => res.status(200).json({
+      msg: posts
+    }))
+    .catch(err => res.status(401).json({
+      msg: err
+    }))
 });
 
 // edit existing post
