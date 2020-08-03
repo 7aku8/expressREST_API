@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const db = require('./config/db');
 //const postModel = require('./models/post');
 
 const indexRouter = require('./routes/index');

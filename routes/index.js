@@ -2,16 +2,42 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const Post = require('../models/Post');
+const uuid = require('uuid');
 
 // add new post
 router.post('/', (req, res) => {
-  Post.findAll()
-    .then(posts => res.status(200).json({
-      msg: posts
-    }))
-    .catch(err => res.status(401).json({
-      msg: err
-    }))
+  const {
+    title,
+    lead,
+    content
+  } = req.body;
+
+  let status = 401;
+  let message = ``;
+
+  Post.create({
+      id: uuid.v4(),
+      title: title,
+      lead: lead,
+      content: content,
+    })
+    .then(() => {
+      status = 200;
+      message = `Post created succesfully`;
+
+      res.status(status).json({
+        msg: message
+      });
+    })
+    .catch((err) => {
+      status = 401;
+      message = `Error: ${err}`;
+
+      res.status(status).json({
+        msg: message
+      });
+    })
+
 });
 
 // edit existing post
