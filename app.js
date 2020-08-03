@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-//const postModel = require('./models/post');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -34,7 +33,9 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    "msg": `Error. Error status: 500`
+  });
 });
 
 
