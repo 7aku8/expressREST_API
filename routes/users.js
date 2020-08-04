@@ -1,9 +1,16 @@
 var express = require('express');
+var usersActions = require('../controller/usersActions');
+
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+router.post('/register', (req, res) => {
+  usersActions.register(req, res);
 });
+
+router.post('/login', (req, res) => {
+  usersActions.login(req, res);
+});
+
 
 module.exports = router;

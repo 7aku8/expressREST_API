@@ -1,3 +1,7 @@
+const {
+    RSA_NO_PADDING
+} = require("constants");
+
 const success = (res, message, posts) => {
     res.status(200).json({
         "success": true,
@@ -19,8 +23,27 @@ const failure = (res, status_code, message) => {
     return;
 };
 
+const successUser = (res, token, message) => {
+    res.status(200).json({
+        "success": true,
+        "message": "You are logged in",
+        "token": token,
+    })
+    return;
+}
+
+const failureUser = (res, message) => {
+    res.status(401).json({
+        "success": false,
+        "message": message
+    })
+    return;
+}
+
 
 module.exports = {
     success,
-    failure
+    failure,
+    successUser,
+    failureUser
 };
