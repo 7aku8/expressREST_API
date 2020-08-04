@@ -15,7 +15,7 @@ Proste REST API służące do zarządania postami
 
 ## REST API
 ### Posty
-*przykładowa struktura pozywytnej odpowiedzi
+- przykładowa struktura pozywytnej odpowiedzi
 ```bash
 {
     "success": true,
@@ -31,7 +31,7 @@ Proste REST API służące do zarządania postami
                 "updatedAt": "2020-08-04"
             }
 ```
-*przykładowa struktura negatywnej odpowiedzi
+- przykładowa struktura negatywnej odpowiedzi
 ```bash
 {
     "success": false,
@@ -41,15 +41,15 @@ Proste REST API służące do zarządania postami
 }
 ```
 
-- GET /api/posts
+#### GET /api/posts
 zwraca wszystkie posty zapisane w bazie
 
-- GET /api/posts/{id}
+#### GET /api/posts/{id}
 zwraca pojedynczy post o podanym ID
 
-- POST /api/posts
+#### POST /api/posts
 dodaje kolejny post do bazy
-*struktura zapytania
+- struktura zapytania
 ```bash
 {
  "title": "", // string, 0 < length < 100, required
@@ -58,7 +58,7 @@ dodaje kolejny post do bazy
 }
 ```
 
-- PATCH /api/posts/{id}
+#### PATCH /api/posts/{id}
 edytuje post o podanym ID
 *przyładowa struktura zapytania
 ```bash
@@ -69,9 +69,9 @@ edytuje post o podanym ID
 ```
 zapytanie może zawierać jedną lub więcej wartości
 
-- DELETE /api/posts
+#### DELETE /api/posts
 usuwa wszystkie dodane posty
 
-- DELETE /api/posts/{id}
+#### DELETE /api/posts/{id}
 usuwa post o podanym ID
  
