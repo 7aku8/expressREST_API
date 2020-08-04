@@ -4,6 +4,7 @@ const {
 } = require('sequelize');
 const db = require('../config/db');
 
+
 // define Post model
 const Post = db.define('Post', {
     id: {
@@ -14,29 +15,14 @@ const Post = db.define('Post', {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "Title field can not be empty."
-            }
-        }
     },
     lead: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "Lead field can not be empty."
-            }
-        }
     },
     content: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "Content field can not be empty."
-            }
-        }
     }
 }, {
     timestamps: true

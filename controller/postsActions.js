@@ -1,10 +1,9 @@
 const db = require('../config/db');
 const Post = require('../models/Post');
 const uuid = require('uuid');
-const response = require('./responseActions');
+const response = require('../utils/responseUtils');
 
 
-// create new post
 const createPost = (req, res) => {
     const newPost = {
         id: uuid.v4(),
@@ -27,14 +26,14 @@ const createPost = (req, res) => {
 };
 
 
-// edit existing post
 const editPost = (req, res) => {
     const id = req.params.id;
 
-    const [key, value] = Object.entries(req.body)[0];
-
     let updateValue = {};
-    updateValue[key] = value;
+
+    for (const [key, value] of Object.entries(req.body)) {
+        updateValue[key] = value;
+    }
     updateValue["updatedAt"] = null;
 
     Post.update(updateValue, {
@@ -53,7 +52,6 @@ const editPost = (req, res) => {
 };
 
 
-// show single post
 const showSinglePost = (req, res) => {
     const id = req.params.id;
 
@@ -73,7 +71,6 @@ const showSinglePost = (req, res) => {
 };
 
 
-// show all posts
 const showAllPosts = (req, res) => {
     Post.findAll()
         .then((posts) => {
@@ -88,7 +85,6 @@ const showAllPosts = (req, res) => {
 };
 
 
-// delete single post
 const deleteSinglePost = (req, res) => {
     const id = req.params.id;
 
@@ -107,7 +103,6 @@ const deleteSinglePost = (req, res) => {
 };
 
 
-// delete all posts
 const deleteAllPosts = (req, res) => {
     Post.destroy({
             truncate: true

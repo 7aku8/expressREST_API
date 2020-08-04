@@ -1,21 +1,23 @@
 const express = require('express');
-const router = express.Router();
 const postsActions = require('../controller/postsActions');
+const router = express.Router();
+
+const validation = require('../middleware/validation');
 
 
 // add new post
-router.post('/', (req, res) => {
+router.post('/', [validation.validateEmptyValues, validation.validateArgsLength], (req, res) => {
   postsActions.createPost(req, res);
 });
 
 
 // update existing post
-router.patch('/:id', (req, res) => {
+router.patch('/:id', [validation.validateId, validation.validateEmptyValues, validation.validateArgsLength], (req, res) => {
   postsActions.editPost(req, res);
 });
 
 // show single post
-router.get('/:id', (req, res) => {
+router.get('/:id', validation.validateId, (req, res) => {
   postsActions.showSinglePost(req, res);
 });
 
@@ -25,7 +27,7 @@ router.get('/', (req, res) => {
 });
 
 // delete single post
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validation.validateId, (req, res) => {
   postsActions.deleteSinglePost(req, res);
 });
 
