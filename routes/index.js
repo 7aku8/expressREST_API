@@ -14,19 +14,26 @@ router.post('/', (req, res) => {
   }
 
   Post.create(newPost)
-    .then(() => {
+    .then((post) => {
       res.status(200).json({
-        "msg": "Post has been created succesfully"
+        "success": true,
+        "message": "Post has been created succesfully",
+        "data": {
+          "post": post
+        }
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Error: Database problem occured, status code: ${err.status}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
 
-// edit existing post
+// update existing post
 router.patch('/:id', (req, res) => {
   const id = req.params.id;
   const [
@@ -34,19 +41,30 @@ router.patch('/:id', (req, res) => {
     value
   ] = Object.entries(req.body)[0];
 
-  Post.update({
+  let updateValue = {};
+  updateValue[key] = value;
+  updateValue["updatedAt"] = null;
+
+  Post.update(updateValue, {
       where: {
         id: id
-      },
-      key: value
-    }).then(() => {
+      }
+
+    }).then((post) => {
       res.status(200).json({
-        "msg": "Post has been updated successfully"
+        "success": true,
+        "message": "Post has been updated succesfully",
+        "data": {
+          "post": post
+        }
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Error: Something went wrong, status code: ${err.status}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
@@ -62,12 +80,19 @@ router.get('/:id', (req, res) => {
     })
     .then((post) => {
       res.status(200).json({
-        "msg": post
+        "success": true,
+        "message": "Post has been found succesfully",
+        "data": {
+          "post": post
+        }
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Post with hiven id has not been found, status code ${err.code}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
@@ -77,12 +102,19 @@ router.get('/', (req, res) => {
   Post.findAll()
     .then((posts) => {
       res.status(200).json({
-        "msg": posts
+        "success": true,
+        "message": "Posts have been found succesfully",
+        "data": {
+          "posts": posts
+        }
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Posts have not been found, status code ${err.code}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
@@ -97,12 +129,17 @@ router.delete('/:id', (req, res) => {
       }
     }).then(() => {
       res.status(200).json({
-        "msg": "Post has been deleted succesfully"
+        "success": true,
+        "message": "Post has been deleted succesfully",
+        "data": {}
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Error: Invalid post's id, status code ${err.status}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
@@ -113,12 +150,17 @@ router.delete('/', (req, res) => {
       truncate: true
     }).then(() => {
       res.status(200).json({
-        "msg": "Posts have been deleted succesfully"
+        "success": true,
+        "message": "Posts have been deleted succesfully",
+        "data": {}
       })
     })
     .catch((err) => {
-      res.status(401).json({
-        "msg": `Error: Unable to delete all posts ${err.status}`
+      res.status(400).json({
+        "success": false,
+        "message": err.errors[0].message,
+        "status_code": 400,
+        "data": {}
       })
     })
 });
