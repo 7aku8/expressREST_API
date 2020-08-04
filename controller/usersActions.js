@@ -1,9 +1,8 @@
 const User = require('../models/User');
 const encrypt = require('bcrypt');
 const responses = require('../utils/responseUtils');
-const {
-    response
-} = require('express');
+const token = require('../utils/generateToken');
+
 require('dotenv').config();
 
 
@@ -37,8 +36,10 @@ const register = (req, res) => {
 };
 
 const login = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const {
+        username,
+        password
+    } = req.body;
 
     const user = await User.findOne({
         where: {
@@ -50,12 +51,12 @@ const login = async (req, res) => {
         const result = await encrypt.compare(password, user.password);
 
         if (result) {
-
+            return responses.successUser(res, token.generateAccessToken(username));
         } else {
-            responses.failureUser(res, "Invalid password");
+            return responses.failureUser(res, "Invalid password");
         }
     } else {
-        responses.failureUser(res, "User with given username has not been found");
+        return responses.failureUser(res, "User with given username has not been found");
     }
 };
 

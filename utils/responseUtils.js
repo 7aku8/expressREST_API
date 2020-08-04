@@ -23,7 +23,7 @@ const failure = (res, status_code, message) => {
     return;
 };
 
-const successUser = (res, token, message) => {
+const successUser = (res, token) => {
     res.status(200).json({
         "success": true,
         "message": "You are logged in",
@@ -32,9 +32,10 @@ const successUser = (res, token, message) => {
     return;
 }
 
-const failureUser = (res, message) => {
-    res.status(401).json({
+const failureUser = (res, status_code = 400, message) => {
+    res.status(status_code).json({
         "success": false,
+        "status": status_code,
         "message": message
     })
     return;
