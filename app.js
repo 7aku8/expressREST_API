@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const auth = require('./middleware/authenticateToken');
+const validateCredentials = require('./middleware/credentialsValidation');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,7 +17,7 @@ app.use(express.urlencoded({
 }));
 
 app.use('/api/posts', auth.authenticateToken, indexRouter);
-app.use('/api/users', usersRouter);
+app.use('/api/users', validateCredentials.validateCredentials, usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
