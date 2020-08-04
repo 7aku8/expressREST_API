@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const Post = require('../models/Post');
 const uuid = require('uuid');
-const response = require('./responseActions');
+const response = require('../utils/responseUtils');
 
 
 // create new post
@@ -31,10 +31,11 @@ const createPost = (req, res) => {
 const editPost = (req, res) => {
     const id = req.params.id;
 
-    const [key, value] = Object.entries(req.body)[0];
-
     let updateValue = {};
-    updateValue[key] = value;
+
+    for (const [key, value] of Object.entries(req.body)) {
+        updateValue[key] = value;
+    }
     updateValue["updatedAt"] = null;
 
     Post.update(updateValue, {

@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const postsActions = require('../controller/postsActions');
+const router = express.Router();
 
 
 // add new post
