@@ -6,32 +6,38 @@ const token = require('../utils/generateToken');
 require('dotenv').config();
 
 
-const register = (req, res) => {
+const register = async (req, res) => {
     const newUser = {};
 
     newUser["username"] = req.body.username;
     newUser["password"] = encrypt.hashSync(req.body.password, process.env.SALT);
 
-    console.log(newUser.password);
+    const sameUsers = await User.findAndCountAll({
+        where: {
+            username: newUser.username
+        }
+    });
+
+    if (sameUsers.count) {
+        return responses.failureUser(res, 401, "Username is already taken");
+    }
 
     User.create(newUser)
         .then((user) => {
-            res.status(200).json({
+            return res.status(200).json({
                 "success": true,
                 "message": "User created successfully",
                 "data": {
                     "user": user
                 }
             })
-            return;
         }).catch((err) => {
             console.log(err);
-            res.status(400).json({
+            return res.status(400).json({
                 "success": false,
                 "message": "Error occured",
                 "data": {}
             })
-            return;
         })
 };
 
