@@ -13,15 +13,30 @@ const Post = db.define('Post', {
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Title field can not be empty."
+            }
+        }
     },
     lead: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Lead field can not be empty."
+            }
+        }
     },
     content: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Content field can not be empty."
+            }
+        }
     }
 }, {
     timestamps: true
