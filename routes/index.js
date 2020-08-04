@@ -6,7 +6,7 @@ const validation = require('../middleware/validation');
 
 
 // add new post
-router.post('/', validation.validateEmptyValues, (req, res) => {
+router.post('/', [validation.validateEmptyValues, validation.validateArgsLength], (req, res) => {
   postsActions.createPost(req, res);
 });
 

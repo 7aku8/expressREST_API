@@ -30,16 +30,22 @@ const validateArgsLength = (req, res, next) => {
     for ([key, value] of Object.entries(req.body)) {
         switch (key) {
             case "title":
-                if (value.length > 100) response.failure(res, 401, "Too long title, max length is 100 characters");
-                return;
+                if (value.length > 100) {
+                    response.failure(res, 401, "Too long title, max length is 100 characters");
+                    return;
+                }
                 break;
             case "lead":
-                if (value.length > 100) response.failure(res, 401, "Too long lead, max length is 100 characters");
-                return;
+                if (value.length > 100) {
+                    response.failure(res, 401, "Too long lead, max length is 100 characters");
+                    return;
+                }
                 break;
             case "content":
-                if (value.length > 1000) response.failure(res, 401, "Too long content, max length is 1000 characters");
-                return;
+                if (value.length > 1000) {
+                    response.failure(res, 401, "Too long content, max length is 1000 characters");
+                    return;
+                }
                 break;
         }
     }
