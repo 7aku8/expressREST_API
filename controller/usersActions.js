@@ -9,7 +9,7 @@ require('dotenv').config();
 const register = async (req, res) => {
     const newUser = {};
 
-    newUser["username"] = req.body.username;
+    newUser["username"] = req.body.username.toLowerCase();
     newUser["password"] = encrypt.hashSync(req.body.password, process.env.SALT);
 
     const sameUsers = await User.findAndCountAll({
@@ -51,7 +51,7 @@ const login = async (req, res) => {
         where: {
             username: username
         }
-    })
+    });
 
     if (user) {
         const result = await encrypt.compare(password, user.password);
@@ -59,10 +59,10 @@ const login = async (req, res) => {
         if (result) {
             return responses.successUser(res, token.generateAccessToken(username));
         } else {
-            return responses.failureUser(res, "Invalid password");
+            return responses.failureUser(res, 401, "Invalid password");
         }
     } else {
-        return responses.failureUser(res, "User with given username has not been found");
+        return responses.failureUser(res, 401, "User with given username has not been found");
     }
 };
 
