@@ -54,13 +54,13 @@ dodaje kolejny post do bazy
 {
  "title": "", // string, 0 < length < 100, required
  "lead": "", // string, 0 < length < 100, required
- "content": "" // string, 0 < length < 100, required
+ "content": "" // string, 0 < length < 1000, required
 }
 ```
 
 #### PATCH /api/posts/{id}
 edytuje post o podanym ID
-*przyładowa struktura zapytania
+- przyładowa struktura zapytania
 ```bash
 {
  "title": "", // string, 0 < length < 100, required
