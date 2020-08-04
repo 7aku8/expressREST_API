@@ -6,6 +6,7 @@ const success = (res, message, posts) => {
             "posts": posts
         }
     })
+    return;
 };
 
 const failure = (res, status_code, message) => {
@@ -15,6 +16,7 @@ const failure = (res, status_code, message) => {
         "status_code": status_code,
         "data": {}
     })
+    return;
 };
 
 
