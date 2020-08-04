@@ -4,7 +4,6 @@ const uuid = require('uuid');
 const response = require('../utils/responseUtils');
 
 
-// create new post
 const createPost = (req, res) => {
     const newPost = {
         id: uuid.v4(),
@@ -27,7 +26,6 @@ const createPost = (req, res) => {
 };
 
 
-// edit existing post
 const editPost = (req, res) => {
     const id = req.params.id;
 
@@ -54,7 +52,6 @@ const editPost = (req, res) => {
 };
 
 
-// show single post
 const showSinglePost = (req, res) => {
     const id = req.params.id;
 
@@ -74,7 +71,6 @@ const showSinglePost = (req, res) => {
 };
 
 
-// show all posts
 const showAllPosts = (req, res) => {
     Post.findAll()
         .then((posts) => {
@@ -89,7 +85,6 @@ const showAllPosts = (req, res) => {
 };
 
 
-// delete single post
 const deleteSinglePost = (req, res) => {
     const id = req.params.id;
 
@@ -108,7 +103,6 @@ const deleteSinglePost = (req, res) => {
 };
 
 
-// delete all posts
 const deleteAllPosts = (req, res) => {
     Post.destroy({
             truncate: true
