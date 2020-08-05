@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const encrypt = require('bcrypt');
 const responses = require('../utils/responseUtils');
 const token = require('../utils/generateToken');
@@ -11,7 +11,7 @@ const register = async (req, res) => {
 
     newUser["username"] = req.body.username.toLowerCase();
     newUser["password"] = encrypt.hashSync(req.body.password, process.env.SALT);
-
+    console.log(User.findAndCountAll);
     const sameUsers = await User.findAndCountAll({
         where: {
             username: newUser.username
