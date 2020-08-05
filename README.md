@@ -23,6 +23,8 @@ Proste REST API służące do zarządania postami
 - ```npm run start```
 - Teoretycznie powinno teraz działać :D
 
+- node v14.2.0
+
 
 ## Wskazówki
 Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie zalogować się. Uzyskany "token" należy przekazywać jako nagłówek "Authorization" w formacie "Bearer token". Po ustawieniu odpowiedniego nagłówka można rozpocząć korzystanie z funkcji modyfikacji postów.
