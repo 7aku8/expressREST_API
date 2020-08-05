@@ -14,7 +14,7 @@ Proste REST API służące do zarządania postami
 ### Tworzenie bazy danych w konsoli psql
 - ```CREATE USER psqluser WITH PASSWORD '1234';```
 - ```CREATE DATABASE psqldb OWNER psqluser;```
-- ```ALTER USER postgres WITH SUPERUSER;```
+- ```ALTER USER psqluser WITH SUPERUSER;```
 ### Klonowanie repozytorium
 - ```git clone https://github.com/JakubWolak/expressREST_API.git```
 - ```cd expressREST_API```
