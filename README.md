@@ -25,7 +25,7 @@ Proste REST API służące do zarządania postami
 
 
 ## Wskazówki
-Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie zalogować się. Uzyskany "token" należy przekazywać jako nagłówek "Authorization" w formacie "Bearer <token>". Po ustawieniu odpowiedniego nagłówka można rozpocząć korzystanie z funkcji modyfikacji postów.
+Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie zalogować się. Uzyskany "token" należy przekazywać jako nagłówek "Authorization" w formacie "Bearer token". Po ustawieniu odpowiedniego nagłówka można rozpocząć korzystanie z funkcji modyfikacji postów.
 
 ## REST API
 
@@ -174,39 +174,69 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 - lead : string, 1 - 100 znaków,
 - content : string, 1 - 1000 znaków
 
-
-
-#### GET /api/posts
-zwraca wszystkie posty zapisane w bazie
-
-#### GET /api/posts/{id}
-zwraca pojedynczy post o podanym ID
-
-#### POST /api/posts
-dodaje kolejny post do bazy
-- struktura zapytania
+#### Pobieranie Postów
+- przykładowa struktura poprawnej odpowiedzi
 ```bash
 {
- "title": "", // string, 0 < length < 100, required
- "lead": "", // string, 0 < length < 100, required
- "content": "" // string, 0 < length < 1000, required
+    "success": true,
+    "message": "Posts have been found succesfully",
+    "data": {
+        "posts": [
+            {
+                "id": "dcc1ff4f-1199-4ea8-8395-10e8503b46bc",
+                "title": "edytowany tytul",
+                "lead": "sga",
+                "content": "asdfashgasdhgasd",
+                "createdAt": "2020-08-04",
+                "updatedAt": "2020-08-04"
+            },
+            {
+                "id": "acd1af20-1a5d-4312-abe5-cf4288e1cf91",
+                "title": "edytowany tytul",
+                "lead": "sga",
+                "content": "asdfashgasdhgasd",
+                "createdAt": "2020-08-04",
+                "updatedAt": "2020-08-04"
+            }
+}
+```
+- przykładowa struktura negatywnej odpowiedzi
+```bash
+{
+    "success": false,
+    "message": "Invalid post's ID given"
+}
+```
+##### GET /api/posts/{id}
+- pobiera dane jednego posta jednorazowo
+- wymaga podania ID posta w adresie url
+- brak struktury zapytania, wymagane jedynie ID posta
+
+##### GET /api/posts
+- pobiera wszystkie dodane posty
+- w przypdaku braku postów w bazie, tablica "posts" jest pusta
+
+#### Usuwanie Postów
+- przykładowa struktura prawidłowej odpowiedzi
+```bash
+{
+    "success": true,
+    "message": "Post have been deleted successfully"
+}
+```
+- przykładowa struktura negatywnej odpowiedzi
+```bash 
+{
+    "success": false,
+    "message": "Invalid post's ID given"
 }
 ```
 
-#### PATCH /api/posts/{id}
-edytuje post o podanym ID
-- przyładowa struktura zapytania
-```bash
-{
- "title": "", // string, 0 < length < 100, required
- "lead": "", // string, 0 < length < 100, required
-}
-```
-zapytanie może zawierać jedną lub więcej wartości
+##### DELETE /api/posts
+- usuwa pojedynczy post
+- wymaga podania ID posta w adresie url
+- brak struktry zapytania, wyamagane jedynie ID posta
 
-#### DELETE /api/posts
-usuwa wszystkie dodane posty
+##### DELETE /api/posts/{id}
+- usuwa wszystkie posty
 
-#### DELETE /api/posts/{id}
-usuwa post o podanym ID
- 
