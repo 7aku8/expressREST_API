@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "psqluser",
-    "password": "password",
+    "username": "postgres",
+    "password": "1234",
     "database": "psqldb",
     "host": "127.0.0.1",
     "dialect": "postgres"
