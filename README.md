@@ -31,7 +31,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 
 ### Konta użytkowników
 
-#### Rejestracja
+#### ✅ Rejestracja
 - przykładowa struktura pozytywnej odpowiedzi
 ```bash
 {
@@ -66,7 +66,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 - username : string, 1 - 100 znakow,
 - password : string, 9 - 100 znakow
 
-#### Logowanie
+#### ✅ Logowanie
 - przykładowa struktura pozytywnej odpowiedzi
 ```bash
 {
@@ -99,7 +99,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 
 ### Posty
 
-#### Dodawanie Postów
+#### ✔️ Dodawanie Postów
 - przykładowa struktura pozywytnej odpowiedzi
 ```bash
 {
@@ -139,7 +139,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 - lead : string, 1 - 100 znaków,
 - content : string, 1 - 1000 znaków
 
-#### Edycja Postów
+#### ✔️ Edycja Postów
 - przykładowa struktura poprawnej odpowiedzi
 ```bash
 {
@@ -174,7 +174,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 - lead : string, 1 - 100 znaków,
 - content : string, 1 - 1000 znaków
 
-#### Pobieranie Postów
+#### ✔️ Pobieranie Postów
 - przykładowa struktura poprawnej odpowiedzi
 ```bash
 {
@@ -216,7 +216,7 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 - pobiera wszystkie dodane posty
 - w przypdaku braku postów w bazie, tablica "posts" jest pusta
 
-#### Usuwanie Postów
+#### ✔️ Usuwanie Postów
 - przykładowa struktura prawidłowej odpowiedzi
 ```bash
 {
