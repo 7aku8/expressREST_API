@@ -232,11 +232,11 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 }
 ```
 
-##### DELETE /api/posts
+##### DELETE /api/posts/{id}
 - usuwa pojedynczy post
 - wymaga podania ID posta w adresie url
 - brak struktry zapytania, wyamagane jedynie ID posta
 
-##### DELETE /api/posts/{id}
+##### DELETE /api/posts/
 - usuwa wszystkie posty
 
