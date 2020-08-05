@@ -104,25 +104,77 @@ Aby rozpocząć korzystanie z REST API należy zarejestrować konto, następnie 
 ```bash
 {
     "success": true,
-    "message": "Posts have been found succesfully",
+    "message": "Post has been created successfully",
     "data": {
-        "posts": [
-            {
-                "id": "eeb67523-892f-4df0-839c-1bf3cc4487e7",
-                "title": "edytowany tytul",
-                "lead": "sga",
-                "content": "asdfashgasdhgasd",
-                "createdAt": "2020-08-04",
-                "updatedAt": "2020-08-04"
-            }
+        "posts": {
+            "id": "78179632-0ba0-4e21-9c4c-2b4a354e2e15",
+            "title": "title",
+            "lead": "lead",
+            "content": "content",
+            "updatedAt": "2020-08-05",
+            "createdAt": "2020-08-05"
+        }
+    }
+}
 ```
 - przykładowa struktura negatywnej odpowiedzi
 ```bash
 {
     "success": false,
-    "message": "Invalid post's ID given"
+    "message": "Value of lead can not be empty"
 }
 ```
+##### POST /api/posts
+- dodaje nowy post
+- struktura zapytania
+```bash
+{
+    "title": "exampletitle",
+    "lead": "examplelead",
+    "content": "examplecontent"
+}
+```
+- Argumenty:
+- title : string, 1 - 100 znaków,
+- lead : string, 1 - 100 znaków,
+- content : string, 1 - 1000 znaków
+
+#### Edycja Postów
+- przykładowa struktura poprawnej odpowiedzi
+```bash
+{
+    "success": true,
+    "message": "Post has been updated successfully",
+    "data": {
+        "posts": [
+            1
+        ]
+    }
+}
+```
+- przykładowa struktura negatywnej odpowiedzi
+```bash
+{
+    "success": false,
+    "message": "Value of lead can not be empty"
+}
+```
+##### PATCH /api/posts/{id}
+- aktualizuje jedną lub więcej własności posta jednorazowo
+- wymaga podania ID posta w adresie url
+- struktura zapytania (może zawierać dowolną z trzech wartości [title, lead, content] lub kilka z nich)
+```bash
+{
+    "title": "exampletitle",
+    "lead": "examplelead"
+}
+```
+- Argumenty:
+- title : string, 1 - 100 znaków,
+- lead : string, 1 - 100 znaków,
+- content : string, 1 - 1000 znaków
+
+
 
 #### GET /api/posts
 zwraca wszystkie posty zapisane w bazie
